@@ -1,90 +1,11 @@
-// bower:scss
-// endbower
 body {
-    padding: 0;
-    background-color: aliceblue;
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. */
 }
 
-
-/* Everything but the jumbotron gets side spacing for mobile first views */
-
-.header,
-.footer {
-    padding-left: 15px;
-    padding-right: 15px;
+.portfolio-item {
+    margin-bottom: 25px;
 }
 
-
-/* Custom page header */
-
-.header {
-    margin-bottom: 10px;
-    /* Make the masthead heading the same height as the navigation */
-    h3 {
-        margin-top: 0;
-        margin-bottom: 0;
-        line-height: 40px;
-        padding-bottom: 19px;
-    }
+footer {
+    margin: 50px 0;
 }
-
-.container {
-    background-color: white;
-}
-
-.panel {
-    background-size: cover;
-    min-height: 200px;
-    position: relative;
-}
-
-.panel-footer {
-    background-color: rgba(0,0,0,0.4);
-    color: white;
-    border-top: none;
-    border-bottom-left-radius: none;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-}
-
-/* Custom page footer */
-
-.footer {
-    padding-top: 19px;
-    color: #777;
-    border-top: 1px solid #e5e5e5;
-}
-
-.container-narrow > hr {
-    margin: 30px 0;
-}
-
-.jumbotron {
-    background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url(../images/pexels-photo-94736.jpeg);
-    background-size: cover;
-    text-align: left;
-    margin-bottom: 0px;
-    h1 {
-        margin-top: 30vh;
-        padding-left: 1em;
-        color: white;
-        font-size: 12em;
-    }
-}
-
-.detail-title {
-  padding-top: 2em;
-  padding-bottom: 2em;
-}
-
-.detail-title h1 {
-  font-size: 5em;
-}
-
-img.detail-img {
-  width: 100%;
-}
-
-
-/* Responsive: Portrait tablets and up */

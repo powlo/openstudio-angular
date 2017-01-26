@@ -15,19 +15,38 @@ angular
     'ngResource',
     'ui.router',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'ngResource',
+    'ngDialog'
   ])
     .config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider
-            .state('artists', {
-                url: '/artists',
-                templateUrl: 'views/main.html',
-                controller: 'MainCtrl'
+            .state('app', {
+              url: '',
+              views: {
+                'header': {
+                    templateUrl : 'views/header.html',
+                    controller  : 'HeaderCtrl'
+                }
+              }
             })
-            .state('detail', {
-                url: '/artists/:id',
-                templateUrl: 'views/detail.html',
-                controller: 'DetailCtrl'
+            .state('app.artists', {
+                url: '/artists',
+                views: {
+                  'content@': {
+                    templateUrl: 'views/artist_list.html',
+                    controller: 'ArtistListCtrl'
+                  }
+                }
+            })
+            .state('app.artists.detail', {
+                url: '/:id',
+                views: {
+                  'content@': {
+                    templateUrl: 'views/artist_detail.html',
+                    controller: 'ArtistDetailCtrl'
+                  }
+                }
             });
         $urlRouterProvider.otherwise('/artists');
     });

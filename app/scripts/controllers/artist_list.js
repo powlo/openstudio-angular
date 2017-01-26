@@ -1,16 +1,9 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name openstudioAngularApp.controller:MainCtrl
- * @description
- * # MainCtrl
- * Controller of the openstudioAngularApp
- */
-
 angular.module('openstudioAngularApp')
-    .controller('MainCtrl', ['$scope', 'artistService', function ($scope, artistService) {
+    .controller('ArtistListCtrl', ['$scope', 'artistService', function ($scope, artistService) {
         $scope.loading = true;
+        console.log('hero');
         artistService.getArtists().query(
             function (response) {
                 $scope.artists = response;

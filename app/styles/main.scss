@@ -9,3 +9,39 @@ body {
 footer {
     margin: 50px 0;
 }
+
+.loginmodal-container h1 {
+  text-align: center;
+  font-size: 1.8em;
+  //font-family: roboto;
+}
+
+.loginmodal-container input {
+  width: 100%;
+  height: 44px;
+  font-size: 16px;
+}
+
+.ngdialog.ngdialog-login .ngdialog-content {
+  max-width: 350px;
+}
+
+.btn-block {
+  padding: 17px;
+  font-size: 14px;
+  margin-bottom: 10px;
+  border-radius: 2px;
+}
+
+.login-help {
+  font-size: 12px;
+  color: grey;
+}
+
+.login-help a {
+  color: inherit;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}

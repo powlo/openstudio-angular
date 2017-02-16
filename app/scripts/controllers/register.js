@@ -7,10 +7,7 @@ angular.module('openstudioAngularApp')
     $scope.loginData={};
 
     $scope.doRegister = function() {
-        console.log('Doing registration', $scope.registration);
-
-        AuthFactory.register($scope.registration);
-
+        AuthFactory.register($scope.registerData);
         ngDialog.close();
 
     };

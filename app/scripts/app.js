@@ -31,7 +31,7 @@ angular
               }
             })
             .state('app.artists', {
-                url: '/artists',
+                url: '/artists/',
                 views: {
                   'content@': {
                     templateUrl: 'views/artist_list.html',
@@ -40,7 +40,7 @@ angular
                 }
             })
             .state('app.artists.detail', {
-                url: '/:id',
+                url: ':id',
                 views: {
                   'content@': {
                     templateUrl: 'views/artist_detail.html',
@@ -48,5 +48,5 @@ angular
                   }
                 }
             });
-        $urlRouterProvider.otherwise('/artists');
+        $urlRouterProvider.otherwise('/artists/');
     });

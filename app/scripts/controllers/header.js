@@ -3,7 +3,6 @@
 angular.module('openstudioAngularApp')
 .controller('HeaderCtrl', ['$scope', '$state', '$rootScope', 'ngDialog', 'AuthFactory', function ($scope, $state, $rootScope, ngDialog, AuthFactory) {
 
-    console.log('header');
     $scope.loggedIn = false;
     $scope.username = '';
 
@@ -13,7 +12,13 @@ angular.module('openstudioAngularApp')
     }
 
     $scope.openLogin = function () {
-        ngDialog.open({ template: 'views/login.html', scope: $scope, className: 'ngdialog-theme-default', controller:"LoginController" });
+        ngDialog.open({
+          template: 'views/login.html',
+          scope: $scope,
+          className: 'ngdialog-theme-default',
+          appendClassName: 'ngdialog-login',
+          controller:"LoginController"
+        });
     };
 
     $scope.logOut = function() {

@@ -5,9 +5,10 @@ angular.module('openstudioAngularApp')
 
     $scope.loginData = $localStorage.getObject('userinfo','{}');
 
-    $scope.doLogin = function() {
-        if($scope.rememberMe)
+    $scope.login = function() {
+        if($scope.rememberMe) {
            $localStorage.storeObject('userinfo',$scope.loginData);
+         }
 
         AuthFactory.login($scope.loginData);
 
@@ -15,7 +16,14 @@ angular.module('openstudioAngularApp')
 
     };
 
-    $scope.openRegister = function () {
-        ngDialog.open({ template: 'views/register.html', scope: $scope, className: 'ngdialog-theme-default', controller:"RegisterController" });
+    $scope.register = function () {
+        console.log('you clicked to register!');
+        //ngDialog.close();
+        ngDialog.open({
+          template: 'views/register.html',
+          scope: $scope,
+          className: 'ngdialog-theme-default',
+          appendClassName: 'ngdialog-register',
+          controller:"RegisterController" });
     };
 }]);

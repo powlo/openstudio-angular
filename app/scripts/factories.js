@@ -20,7 +20,10 @@ angular.module('openstudioAngularApp')
       }
     };
   }])
-  .factory('AuthFactory', ['$resource', '$http', '$localStorage', '$rootScope', '$window', 'baseURL', 'ngDialog', function($resource, $http, $localStorage, $rootScope, $window, baseURL, ngDialog) {
+  .factory('AuthFactory', ['$resource', '$http', '$localStorage', '$rootScope',
+    '$window', 'baseURL', 'apiBaseURL', 'ngDialog',
+    function($resource, $http, $localStorage, $rootScope,
+      $window, baseURL, apiBaseURL, ngDialog) {
 
     var authFac = {};
     var TOKEN_KEY = 'Token';
@@ -59,29 +62,26 @@ angular.module('openstudioAngularApp')
 
     authFac.login = function(loginData) {
 
-      $resource(baseURL + "studiousers/login")
+      $resource(apiBaseURL + "studiousers/login")
         .save(loginData,
           function(response) {
             storeUserCredentials({
               username: loginData.username,
-              token: response.token
+              token: response.id
             });
             $rootScope.$broadcast('login:Successful');
           },
           function(response) {
             isAuthenticated = false;
-
-            var message = '<div class="ngdialog-message">' +
-                '<div><h3>Login Unsuccessful</h3></div>' +
-              '<div><p>' + response.data.err.message + '</p><p>' +
-              response.data.err.name + '</p></div>' +
-              '<div class="ngdialog-buttons">' +
-                    '<button type="button" class="ngdialog-button ngdialog-button-primary" ng-click=confirm("OK")>OK</button>' +
-                '</div>';
-
+            //$scope.status = response.status;
+            //$scope.statusText = response.statusText;
             ngDialog.openConfirm({
-              template: message,
-              plain: 'true'
+              template: 'views/login-fail.html',
+              className: 'ngdialog-theme-default',
+              controller: ['$scope', function ($scope){
+                $scope.status = response.status;
+                $scope.statusText = response.statusText;
+              }]
             });
           }
 
@@ -90,15 +90,18 @@ angular.module('openstudioAngularApp')
     };
 
     authFac.logout = function() {
-      $resource(baseURL + "users/logout").get(function(response) {});
+      //we do an empty post because the access token should be in the header
+      $resource(apiBaseURL + "studiousers/logout").save();
       destroyUserCredentials();
     };
 
     authFac.register = function(registerData) {
 
-      $resource(baseURL + "users/register")
+      $resource(apiBaseURL + "studiousers")
         .save(registerData,
           function(response) {
+            console.log('created new user!');
+            console.log(response);
             authFac.login({
               username: registerData.username,
               password: registerData.password
@@ -106,6 +109,7 @@ angular.module('openstudioAngularApp')
             if (registerData.rememberMe) {
               $localStorage.storeObject('userinfo', {
                 username: registerData.username,
+                email: registerData.email,
                 password: registerData.password
               });
             }
@@ -113,7 +117,8 @@ angular.module('openstudioAngularApp')
             $rootScope.$broadcast('registration:Successful');
           },
           function(response) {
-
+            console.log('something went wrong');
+            console.log(response);
             var message = '<div class="ngdialog-message">' +
             '<div><h3>Registration Unsuccessful</h3></div>' +
               '<div><p>' + response.data.err.message +

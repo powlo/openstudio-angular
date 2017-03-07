@@ -17,6 +17,7 @@ angular
     'ngSanitize',
     'ngTouch',
     'ngResource',
+    'ngMessages',
     'ngDialog'
   ])
     .config(function ($stateProvider, $urlRouterProvider) {

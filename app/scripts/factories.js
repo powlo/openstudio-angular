@@ -60,13 +60,13 @@ angular.module('openstudioAngularApp')
       useCredentials(credentials);
     }
 
-    authFac.login = function(loginData) {
+    authFac.login = function(data) {
 
       $resource(apiBaseURL + "studiousers/login")
-        .save(loginData,
+        .save(data,
           function(response) {
             storeUserCredentials({
-              username: loginData.username,
+              username: data.username,
               token: response.id
             });
             $rootScope.$broadcast('login:Successful');
@@ -95,43 +95,9 @@ angular.module('openstudioAngularApp')
       destroyUserCredentials();
     };
 
-    authFac.register = function(registerData) {
-
+    authFac.register = function(registerData, success, failure) {
       $resource(apiBaseURL + "studiousers")
-        .save(registerData,
-          function(response) {
-            console.log('created new user!');
-            console.log(response);
-            authFac.login({
-              username: registerData.username,
-              password: registerData.password
-            });
-            if (registerData.rememberMe) {
-              $localStorage.storeObject('userinfo', {
-                username: registerData.username,
-                email: registerData.email,
-                password: registerData.password
-              });
-            }
-
-            $rootScope.$broadcast('registration:Successful');
-          },
-          function(response) {
-            console.log('something went wrong');
-            console.log(response);
-            var message = '<div class="ngdialog-message">' +
-            '<div><h3>Registration Unsuccessful</h3></div>' +
-              '<div><p>' + response.data.err.message +
-              '</p><p>' + response.data.err.name + '</p></div>';
-
-            ngDialog.openConfirm({
-              template: message,
-              plain: 'true'
-            });
-
-          }
-
-        );
+        .save(registerData, success, failure);
     };
 
     authFac.isAuthenticated = function() {

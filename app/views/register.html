@@ -1,21 +1,44 @@
 <div class="ngdialog-message">
-  <div class="loginmodal-container">
+  <div class="modal-container">
     <h1>Register</h1><br>
     <div>
-      <form ng-submit="doRegister()">
-        <div class="form-group">
+      <form name="regForm" ng-submit="doRegister()">
+        <div class="form-group" ng-class="{ 'has-error' : regForm.username.$invalid && !regForm.username.$pristine }">
           <label class="sr-only" for="username">Username</label>
-          <input type="text" class="form-control input-sm" id="username" placeholder="Username" ng-model="registerData.username">
+          <input
+            name="username"
+            type="text"
+            class="form-control input-lg"
+            placeholder="Username"
+            ng-model="registerData.username"
+            required
+            ng-minlength="3">
         </div>
-        <div class="form-group">
+        <div ng-messages="regForm.username.$error">
+          <div ng-message="exists">This username is taken.</div>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error' : regForm.email.$invalid && !regForm.email.$pristine }">
           <label class="sr-only" for="email">Email</label>
-          <input type="email" class="form-control input-sm" id="email" placeholder="Email" ng-model="registerData.email">
+          <input
+            name="email"
+            type="email"
+            class="form-control input-lg"
+            placeholder="Email"
+            ng-model="registerData.email"
+            required>
         </div>
-        <div class="form-group">
+        <div class="form-group"ng-class="{ 'has-error' : regForm.password.$invalid && !regForm.password.$pristine }">
           <label class="sr-only" for="password">Password</label>
-          <input type="password" class="form-control input-sm" id="password" placeholder="Password" ng-model="registerData.password">
+          <input
+            name="password"
+            type="password"
+            class="form-control input-lg"
+            placeholder="Password"
+            ng-model="registerData.password"
+            required
+            ng-minlength="6">
         </div>
-        <button type="submit" class="btn btn-info btn-block">Register</button>
+        <button type="submit" class="btn btn-info btn-block" ng-disabled="regForm.$invalid">Register</button>
       </form>
     </div>
   </div>

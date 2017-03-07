@@ -12,7 +12,7 @@ angular.module('openstudioAngularApp')
     }
 
     $scope.openLogin = function () {
-        ngDialog.open({
+        $scope.logindialog = ngDialog.open({
           template: 'views/login.html',
           scope: $scope,
           className: 'ngdialog-theme-default',

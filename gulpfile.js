@@ -35,8 +35,6 @@ var paths = {
     }
 };
 
-console.log('paths: ');
-console.log(paths);
 ////////////////////////
 // Reusable pipelines //
 ////////////////////////

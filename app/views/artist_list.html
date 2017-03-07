@@ -12,9 +12,10 @@
   <!-- Artist entry -->
   <div class="row">
     <div ng-repeat="artist in artists">
-      <div class="col-md-3 portfolio-item">
+      <div class="col-md-4 col-sm-6 portfolio-item">
           <a ui-sref="app.artists.detail({id:artist.id})">
-              <img class="img-responsive" src="{{ artist.image }}" alt="">
+              <div style="background: url({{ artist.image }}); background-size: cover; height: 300px">
+              </div>
           </a>
       </div>
     </div>

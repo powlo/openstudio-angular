@@ -18,9 +18,11 @@ angular
     'ngTouch',
     'ngResource',
     'ngMessages',
-    'ngDialog'
+    'ngDialog',
+    'lbServices'
   ])
-    .config(function ($stateProvider, $urlRouterProvider) {
+    .config(function ($stateProvider, $urlRouterProvider, LoopBackResourceProvider) {
+        LoopBackResourceProvider.setUrlBase('http://localhost:8080/api');
         $stateProvider
             .state('app', {
               url: '',

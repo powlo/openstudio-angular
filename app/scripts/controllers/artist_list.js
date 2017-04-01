@@ -2,8 +2,8 @@
 
 angular.module('openstudioAngularApp')
     .controller('ArtistListCtrl', ['$scope', 'Artist', function ($scope, Artist) {
-        let artist_per_page = 9;
-        let count = Artist.count;
+        var artist_per_page = 9;
+        var count = Artist.count;
         console.log(count());
         $scope.page = 0;
 

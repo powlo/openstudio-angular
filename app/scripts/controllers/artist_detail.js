@@ -7,6 +7,7 @@ angular.module('openstudioAngularApp')
         Artist.findById(
           {id: $stateParams.id},
           function (response) {
+              $scope.hero = { title: '', image: response.image };
               $scope.artist = response;
               $scope.loading = false;
           },

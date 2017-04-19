@@ -33,23 +33,23 @@ angular
                 }
               }
             })
-            .state('app.artists', {
-                url: '/artists/',
+            .state('app.studios', {
+                url: '/studios/',
                 views: {
                   'content@': {
-                    templateUrl: 'views/artist_list.html',
-                    controller: 'ArtistListCtrl'
+                    templateUrl: 'views/studio_list.html',
+                    controller: 'StudioListCtrl'
                   }
                 }
             })
-            .state('app.artists.detail', {
+            .state('app.studios.detail', {
                 url: ':id',
                 views: {
                   'content@': {
-                    templateUrl: 'views/artist_detail.html',
-                    controller: 'ArtistDetailCtrl'
+                    templateUrl: 'views/studio_detail.html',
+                    controller: 'StudioDetailCtrl'
                   }
                 }
             });
-        $urlRouterProvider.otherwise('/artists/');
+        $urlRouterProvider.otherwise('/studios/');
     });

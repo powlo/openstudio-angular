@@ -20,7 +20,11 @@
     <div ng-repeat="studio in studios">
       <div class="col-md-4 col-sm-6 portfolio-item">
           <a ui-sref="app.studios.detail({id:studio.id})">
-              <div style="background: url({{ studio.image }}); background-size: cover; height: 300px">
+              <div style="background: url({{ studio.image }})" class="list-background">
+                <div class="bottom-cover">
+                  <p class="studio-list-name">{{ studio.name }}</p>
+                  <p class="studio-list-media">{{ studio.media_type }}</p>
+                </div>
               </div>
           </a>
       </div>

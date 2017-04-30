@@ -34,7 +34,7 @@ angular
               }
             })
             .state('app.studios', {
-                url: '/studios/',
+                url: '/studios/?search',
                 views: {
                   'content@': {
                     templateUrl: 'views/studio_list.html',

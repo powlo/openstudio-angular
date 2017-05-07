@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('openstudioAngularApp')
-    .controller('StudioListCtrl', [
-      '$rootScope', '$scope', '$stateParams', 'Studio',
-      function ($rootScope, $scope, $stateParams, Studio) {
+    .controller('EventListCtrl', [
+      '$rootScope', '$scope', '$stateParams', 'Event',
+      function ($rootScope, $scope, $stateParams, Event) {
         $scope.hero = {title:  "Open Studio", image: "/images/pexels-photo-70183.jpeg"};
-        var studios_per_page = 9;
+        var events_per_page = 9;
 
         $scope.page = 0;
         //ilike doesn't seem to work with mongodb...
@@ -13,13 +13,13 @@ angular.module('openstudioAngularApp')
           $stateParams.search = '';
         }
         const ilike_pattern = "/.*" + $stateParams.search + ".*/i";
-        Studio.find({
+        Event.find({
           filter: {
-            limit : studios_per_page,
+            limit : events_per_page,
             where: {name: {regexp: ilike_pattern}}
           }},
           function (response) { /*success*/
-            $scope.studios = response;
+            $scope.events = response;
             $scope.count = response.length;
           },
           function (response) { /*error*/

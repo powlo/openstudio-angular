@@ -8,22 +8,22 @@
   <!-- Page Heading -->
   <div class="row">
       <div class="col-lg-12">
-          <h1 class="page-header">Studios
+          <h1 class="page-header">Events
               <small>A-Z</small>
           </h1>
       </div>
   </div>
 
   <!-- /.row -->
-  <!-- Studio entry -->
+  <!-- Event entry -->
   <div class="row">
-    <div ng-repeat="studio in studios">
+    <div ng-repeat="event in events">
       <div class="col-md-4 col-sm-6 portfolio-item">
-          <a ui-sref="app.studios.detail({id:studio.id})">
-              <div style="background: url({{ studio.image }})" class="list-background">
+          <a ui-sref="app.events.detail({id:event.id})">
+              <div style="background: url({{ event.image }})" class="list-background">
                 <div class="bottom-cover">
-                  <p class="studio-list-name">{{ studio.name }}</p>
-                  <p class="studio-list-media">{{ studio.media_type }}</p>
+                  <p class="event-list-name">{{ event.name }}</p>
+                  <p class="event-list-media">{{ event.media_type }}</p>
                 </div>
               </div>
           </a>

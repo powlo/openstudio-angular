@@ -5142,13 +5142,13 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
 
 /**
  * @ngdoc object
- * @name lbServices.Studio
- * @header lbServices.Studio
+ * @name lbServices.Event
+ * @header lbServices.Event
  * @object
  *
  * @description
  *
- * A $resource object for interacting with the `Studio` model.
+ * A $resource object for interacting with the `Event` model.
  *
  * ## Example
  *
@@ -5158,19 +5158,19 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
  *
  */
   module.factory(
-    "Studio",
+    "Event",
     [
       'LoopBackResource', 'LoopBackAuth', '$injector', '$q',
       function(LoopBackResource, LoopBackAuth, $injector, $q) {
         var R = LoopBackResource(
-        urlBase + "/Studios/:id",
+        urlBase + "/Events/:id",
           { 'id': '@id' },
           {
 
             /**
              * @ngdoc method
-             * @name lbServices.Studio#create
-             * @methodOf lbServices.Studio
+             * @name lbServices.Event#create
+             * @methodOf lbServices.Event
              *
              * @description
              *
@@ -5197,18 +5197,18 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `Studio` object.)
+             * This usually means the response is a `Event` object.)
              * </em>
              */
             "create": {
-              url: urlBase + "/Studios",
+              url: urlBase + "/Events",
               method: "POST",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.Studio#createMany
-             * @methodOf lbServices.Studio
+             * @name lbServices.Event#createMany
+             * @methodOf lbServices.Event
              *
              * @description
              *
@@ -5235,19 +5235,19 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `Studio` object.)
+             * This usually means the response is a `Event` object.)
              * </em>
              */
             "createMany": {
               isArray: true,
-              url: urlBase + "/Studios",
+              url: urlBase + "/Events",
               method: "POST",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.Studio#upsert
-             * @methodOf lbServices.Studio
+             * @name lbServices.Event#upsert
+             * @methodOf lbServices.Event
              *
              * @description
              *
@@ -5274,18 +5274,18 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `Studio` object.)
+             * This usually means the response is a `Event` object.)
              * </em>
              */
             "upsert": {
-              url: urlBase + "/Studios",
+              url: urlBase + "/Events",
               method: "PUT",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.Studio#replaceOrCreate
-             * @methodOf lbServices.Studio
+             * @name lbServices.Event#replaceOrCreate
+             * @methodOf lbServices.Event
              *
              * @description
              *
@@ -5312,18 +5312,18 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `Studio` object.)
+             * This usually means the response is a `Event` object.)
              * </em>
              */
             "replaceOrCreate": {
-              url: urlBase + "/Studios/replaceOrCreate",
+              url: urlBase + "/Events/replaceOrCreate",
               method: "POST",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.Studio#upsertWithWhere
-             * @methodOf lbServices.Studio
+             * @name lbServices.Event#upsertWithWhere
+             * @methodOf lbServices.Event
              *
              * @description
              *
@@ -5349,18 +5349,18 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `Studio` object.)
+             * This usually means the response is a `Event` object.)
              * </em>
              */
             "upsertWithWhere": {
-              url: urlBase + "/Studios/upsertWithWhere",
+              url: urlBase + "/Events/upsertWithWhere",
               method: "POST",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.Studio#exists
-             * @methodOf lbServices.Studio
+             * @name lbServices.Event#exists
+             * @methodOf lbServices.Event
              *
              * @description
              *
@@ -5385,14 +5385,14 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *  - `exists` – `{boolean=}` -
              */
             "exists": {
-              url: urlBase + "/Studios/:id/exists",
+              url: urlBase + "/Events/:id/exists",
               method: "GET",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.Studio#findById
-             * @methodOf lbServices.Studio
+             * @name lbServices.Event#findById
+             * @methodOf lbServices.Event
              *
              * @description
              *
@@ -5416,18 +5416,18 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `Studio` object.)
+             * This usually means the response is a `Event` object.)
              * </em>
              */
             "findById": {
-              url: urlBase + "/Studios/:id",
+              url: urlBase + "/Events/:id",
               method: "GET",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.Studio#replaceById
-             * @methodOf lbServices.Studio
+             * @name lbServices.Event#replaceById
+             * @methodOf lbServices.Event
              *
              * @description
              *
@@ -5453,18 +5453,18 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `Studio` object.)
+             * This usually means the response is a `Event` object.)
              * </em>
              */
             "replaceById": {
-              url: urlBase + "/Studios/:id/replace",
+              url: urlBase + "/Events/:id/replace",
               method: "POST",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.Studio#find
-             * @methodOf lbServices.Studio
+             * @name lbServices.Event#find
+             * @methodOf lbServices.Event
              *
              * @description
              *
@@ -5486,19 +5486,19 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `Studio` object.)
+             * This usually means the response is a `Event` object.)
              * </em>
              */
             "find": {
               isArray: true,
-              url: urlBase + "/Studios",
+              url: urlBase + "/Events",
               method: "GET",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.Studio#findOne
-             * @methodOf lbServices.Studio
+             * @name lbServices.Event#findOne
+             * @methodOf lbServices.Event
              *
              * @description
              *
@@ -5520,18 +5520,18 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `Studio` object.)
+             * This usually means the response is a `Event` object.)
              * </em>
              */
             "findOne": {
-              url: urlBase + "/Studios/findOne",
+              url: urlBase + "/Events/findOne",
               method: "GET",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.Studio#updateAll
-             * @methodOf lbServices.Studio
+             * @name lbServices.Event#updateAll
+             * @methodOf lbServices.Event
              *
              * @description
              *
@@ -5558,14 +5558,14 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              * Information related to the outcome of the operation
              */
             "updateAll": {
-              url: urlBase + "/Studios/update",
+              url: urlBase + "/Events/update",
               method: "POST",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.Studio#deleteById
-             * @methodOf lbServices.Studio
+             * @name lbServices.Event#deleteById
+             * @methodOf lbServices.Event
              *
              * @description
              *
@@ -5587,18 +5587,18 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `Studio` object.)
+             * This usually means the response is a `Event` object.)
              * </em>
              */
             "deleteById": {
-              url: urlBase + "/Studios/:id",
+              url: urlBase + "/Events/:id",
               method: "DELETE",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.Studio#count
-             * @methodOf lbServices.Studio
+             * @name lbServices.Event#count
+             * @methodOf lbServices.Event
              *
              * @description
              *
@@ -5623,14 +5623,14 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *  - `count` – `{number=}` -
              */
             "count": {
-              url: urlBase + "/Studios/count",
+              url: urlBase + "/Events/count",
               method: "GET",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.Studio#prototype$updateAttributes
-             * @methodOf lbServices.Studio
+             * @name lbServices.Event#prototype$updateAttributes
+             * @methodOf lbServices.Event
              *
              * @description
              *
@@ -5638,7 +5638,7 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * @param {Object=} parameters Request parameters.
              *
-             *  - `id` – `{*}` - Studio id
+             *  - `id` – `{*}` - Event id
              *
              * @param {Object} postData Request data.
              *
@@ -5656,18 +5656,18 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `Studio` object.)
+             * This usually means the response is a `Event` object.)
              * </em>
              */
             "prototype$updateAttributes": {
-              url: urlBase + "/Studios/:id",
+              url: urlBase + "/Events/:id",
               method: "PUT",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.Studio#createChangeStream
-             * @methodOf lbServices.Studio
+             * @name lbServices.Event#createChangeStream
+             * @methodOf lbServices.Event
              *
              * @description
              *
@@ -5697,7 +5697,7 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *  - `changes` – `{ReadableStream=}` -
              */
             "createChangeStream": {
-              url: urlBase + "/Studios/change-stream",
+              url: urlBase + "/Events/change-stream",
               method: "POST",
             },
           }
@@ -5707,8 +5707,8 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
 
             /**
              * @ngdoc method
-             * @name lbServices.Studio#patchOrCreate
-             * @methodOf lbServices.Studio
+             * @name lbServices.Event#patchOrCreate
+             * @methodOf lbServices.Event
              *
              * @description
              *
@@ -5735,15 +5735,15 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `Studio` object.)
+             * This usually means the response is a `Event` object.)
              * </em>
              */
         R["patchOrCreate"] = R["upsert"];
 
             /**
              * @ngdoc method
-             * @name lbServices.Studio#updateOrCreate
-             * @methodOf lbServices.Studio
+             * @name lbServices.Event#updateOrCreate
+             * @methodOf lbServices.Event
              *
              * @description
              *
@@ -5770,15 +5770,15 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `Studio` object.)
+             * This usually means the response is a `Event` object.)
              * </em>
              */
         R["updateOrCreate"] = R["upsert"];
 
             /**
              * @ngdoc method
-             * @name lbServices.Studio#patchOrCreateWithWhere
-             * @methodOf lbServices.Studio
+             * @name lbServices.Event#patchOrCreateWithWhere
+             * @methodOf lbServices.Event
              *
              * @description
              *
@@ -5804,15 +5804,15 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `Studio` object.)
+             * This usually means the response is a `Event` object.)
              * </em>
              */
         R["patchOrCreateWithWhere"] = R["upsertWithWhere"];
 
             /**
              * @ngdoc method
-             * @name lbServices.Studio#update
-             * @methodOf lbServices.Studio
+             * @name lbServices.Event#update
+             * @methodOf lbServices.Event
              *
              * @description
              *
@@ -5842,8 +5842,8 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
 
             /**
              * @ngdoc method
-             * @name lbServices.Studio#destroyById
-             * @methodOf lbServices.Studio
+             * @name lbServices.Event#destroyById
+             * @methodOf lbServices.Event
              *
              * @description
              *
@@ -5865,15 +5865,15 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `Studio` object.)
+             * This usually means the response is a `Event` object.)
              * </em>
              */
         R["destroyById"] = R["deleteById"];
 
             /**
              * @ngdoc method
-             * @name lbServices.Studio#removeById
-             * @methodOf lbServices.Studio
+             * @name lbServices.Event#removeById
+             * @methodOf lbServices.Event
              *
              * @description
              *
@@ -5895,15 +5895,15 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `Studio` object.)
+             * This usually means the response is a `Event` object.)
              * </em>
              */
         R["removeById"] = R["deleteById"];
 
             /**
              * @ngdoc method
-             * @name lbServices.Studio#patchAttributes
-             * @methodOf lbServices.Studio
+             * @name lbServices.Event#patchAttributes
+             * @methodOf lbServices.Event
              *
              * @description
              *
@@ -5911,7 +5911,7 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * @param {Object=} parameters Request parameters.
              *
-             *  - `id` – `{*}` - Studio id
+             *  - `id` – `{*}` - Event id
              *
              * @param {Object} postData Request data.
              *
@@ -5929,7 +5929,7 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `Studio` object.)
+             * This usually means the response is a `Event` object.)
              * </em>
              */
         R["patchAttributes"] = R["prototype$updateAttributes"];
@@ -5937,13 +5937,13 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
 
         /**
         * @ngdoc property
-        * @name lbServices.Studio#modelName
-        * @propertyOf lbServices.Studio
+        * @name lbServices.Event#modelName
+        * @propertyOf lbServices.Event
         * @description
         * The name of the model represented by this $resource,
-        * i.e. `Studio`.
+        * i.e. `Event`.
         */
-        R.modelName = "Studio";
+        R.modelName = "Event";
 
 
 

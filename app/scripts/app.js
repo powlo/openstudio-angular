@@ -19,10 +19,17 @@ angular
     'ngResource',
     'ngMessages',
     'ngDialog',
-    'lbServices'
+    'lbServices',
+    'uiGmapgoogle-maps'
   ])
-    .config(function ($stateProvider, $urlRouterProvider, LoopBackResourceProvider) {
+    .config(function ($stateProvider, $urlRouterProvider,
+      LoopBackResourceProvider, uiGmapGoogleMapApiProvider) {
         LoopBackResourceProvider.setUrlBase('http://localhost:8080/api');
+
+        uiGmapGoogleMapApiProvider.configure({
+        key: 'AIzaSyBK8FryBmEpUNMPy31IcoF9iErtDI7JG3Q'
+        });
+        
         $stateProvider
             .state('app', {
               url: '',

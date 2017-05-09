@@ -5,6 +5,11 @@
 </div>
 
 <div class="container">
+  <ui-gmap-google-map center='map.center' zoom='map.zoom'>
+    <ui-gmap-markers models="events" coords="'geopoint'"
+      idKey = "'id'" modelsbyref="true">
+    </ui-gmap-markers>
+  </ui-gmap-google-map>
   <!-- Page Heading -->
   <div class="row">
       <div class="col-lg-12">

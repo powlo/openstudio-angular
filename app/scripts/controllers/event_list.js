@@ -31,6 +31,7 @@ angular.module('openstudioAngularApp')
             $scope.events.forEach(function(event){
               event.geopoint.latitude = event.geopoint.lat;
               event.geopoint.longitude = event.geopoint.lng;
+              event.icon = 'images/map-marker.png';
             });
           },
           function (response) { /*error*/

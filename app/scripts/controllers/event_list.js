@@ -12,8 +12,6 @@ angular.module('openstudioAngularApp')
           zoom: 15
         };
 
-        $scope.hero = {title:  "Open Studio", image: "/images/pexels-photo-70183.jpeg"};
-
         $scope.page = 0;
         //ilike doesn't seem to work with mongodb...
         if ($stateParams.search === undefined) {

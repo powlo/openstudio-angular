@@ -24,7 +24,6 @@ angular.module('openstudioAngularApp')
           }},
           function (response) { /*success*/
             $scope.events = response;
-            $scope.count = response.length;
 
             //directive 'ui-gmap-markers' needs the fields
             //latitude/longitude on the object.

@@ -3,25 +3,34 @@
       <h1>Events</h1>
   </div>
 
-  <ui-gmap-google-map center='map.center' zoom='map.zoom'>
-    <ui-gmap-markers models="events" coords="'geopoint'"
-      idKey = "'id'" modelsbyref="true" icon="'icon'">
-    </ui-gmap-markers>
-  </ui-gmap-google-map>
-  <!-- Page Heading -->
-  <div class="row">
-      <div class="col-lg-12">
-          <h1 class="page-header">Events
-              <small>A-Z</small>
-          </h1>
-      </div>
+<div class="row">
+  <div class="col-xs-12">
+    <ui-gmap-google-map center='map.center' zoom='map.zoom'>
+      <ui-gmap-markers models="markers" coords="'geopoint'"
+        idKey = "'id'" modelsbyref="true" icon="'icon'">
+      </ui-gmap-markers>
+    </ui-gmap-google-map>
   </div>
-
+</div>
   <!-- /.row -->
-  <!-- Event entry -->
-  <div class="row">
-    <div ng-repeat="event in events">
-      <div class="col-md-4 col-sm-6 portfolio-item">
+  <ul>
+    <li class="row" ng-repeat="entry in events">
+      <div class="col col-xs-9">
+        <h2>{{ entry.date | date : 'EEEE d MMMM'}}</h2>
+        <ul class="list-group">
+          <li class="list-group-item" ng-repeat="event in entry.events">
+            <div class="row">
+              <div class="col col-xs-4">
+                <div class="event-list-img" style="background-image: url({{event.image}});"></div>
+              </div>
+              <div class="col col-xs-8">
+                <h3>{{event.name}} <span class="badge">{{event.studio_number}}</span></h3>
+                <p>{{event.media_type}}</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <!--
           <a ui-sref="app.events.detail({id:event.id})">
               <div style="background: url({{ event.image }})" class="list-background">
                 <div class="bottom-cover">
@@ -29,9 +38,9 @@
                   <p class="event-list-media">{{ event.media_type }}</p>
                 </div>
               </div>
-          </a>
+          </a>-->
       </div>
-    </div>
-  </div>
-  <!-- /.row -->
+    </li>
+  </ul>
+  <!-- /ul.row -->
 </div>

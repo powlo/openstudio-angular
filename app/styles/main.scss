@@ -3,12 +3,22 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
+ul {
+  list-style-type: none;
+}
+
 //Icon made by [http://www.flaticon.com/authors/freepik] from www.flaticon.com
 .img-icon {
   width: 1em;
   height: 1em;
   float: left;
   margin-right: 0.3em;
+}
+
+.event-list-img {
+  background-size: cover;
+  background-position: center;
+  height: 100px;
 }
 
 .jumbotron {

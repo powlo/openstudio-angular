@@ -167,8 +167,8 @@ gulp.task('client:build', ['html', 'styles'], function () {
             searchPath: [yeoman.app, '.tmp']
         }))
         .pipe(jsFilter)
-        .pipe($.ngAnnotate())
-        .pipe($.uglify())
+        //.pipe($.ngAnnotate()) //ng-annotate will fail if you use ES6 styles
+        //.pipe($.uglify()) //uglify will fail if you use ES6 styles
         .pipe(jsFilter.restore())
         .pipe(cssFilter)
         .pipe($.minifyCss({

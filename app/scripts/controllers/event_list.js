@@ -4,31 +4,20 @@ angular.module('openstudioAngularApp')
     .controller('EventListCtrl', [
       '$rootScope', '$scope', '$stateParams', 'Event',
       function ($rootScope, $scope, $stateParams, Event) {
+        $scope.today = new Date();
+        $scope.today.setDate(1);
+        $scope.today.setMonth(6);
+        $scope.today.setHours(12,0,0,0);
 
         //util function, move to own module
-        function group_by_date(acc, val){
-          let index = acc.findIndex(function(element){
-            return element.date === val.date;
-          });
-          if (index === -1){
-            acc.push({'date' : val.date, 'events' : [val]});
-          }
-          else {
-            acc[index].events.push(val);
-          }
-          return acc;
-          //return a list of objects. Each object has a date and an events list
-          /*
-          [{'date': "Today", events: ['lots of events']}, {'date':'Tomorrow', events: ['more events']}]
-          if (acc.hasOwnProperty(val.date)){
-            acc[val.date].push(val);
-          }
-          else {
-            acc[val.date] = [val];
-          }
-          return acc;
-          */
-        }
+        $scope.sameDay = function(d1){
+          return function(event){
+            const d2 = new Date(event.date);
+            return d2.getYear() === d1.getYear() &&
+              d2.getMonth() === d1.getMonth() &&
+              d2.getDate() === d1.getDate();
+          };
+        };
 
         $scope.map = {
           center: {
@@ -48,15 +37,13 @@ angular.module('openstudioAngularApp')
             where: {name: {regexp: ilike_pattern}}
           }},
           function (events) { /*success*/
-            //build list of events grouped by date
-            $scope.events = events.reduce(group_by_date, []);
-
-            //build our list of markers
+            $scope.events = events;
+            //create a marker for each event
             events.forEach(function(event){
               let m = {geopoint: {}, icon: 'images/map-marker.png', id: event.id};
               m.geopoint.latitude = event.geopoint.lat;
               m.geopoint.longitude = event.geopoint.lng;
-              $scope.markers.push(m);
+              event.marker = m;
             });
           },
           function (response) { /*error*/

@@ -20,7 +20,8 @@ angular
     'ngMessages',
     'ngDialog',
     'lbServices',
-    'uiGmapgoogle-maps'
+    'uiGmapgoogle-maps',
+    'angular.filter'
   ])
     .config(function ($stateProvider, $urlRouterProvider,
       LoopBackResourceProvider, uiGmapGoogleMapApiProvider) {
@@ -29,7 +30,7 @@ angular
         uiGmapGoogleMapApiProvider.configure({
         key: 'AIzaSyBK8FryBmEpUNMPy31IcoF9iErtDI7JG3Q'
         });
-        
+
         $stateProvider
             .state('app', {
               url: '',

@@ -4,43 +4,60 @@
   </div>
 
 <div class="row">
-  <div class="col-xs-12">
-    <ui-gmap-google-map center='map.center' zoom='map.zoom'>
-      <ui-gmap-markers models="markers" coords="'geopoint'"
-        idKey = "'id'" modelsbyref="true" icon="'icon'">
-      </ui-gmap-markers>
-    </ui-gmap-google-map>
+  <!--sidebar -->
+  <div class="col col-xs-3 col-xs-push-9">
+  <label>Today
+    <input type="radio" value="today" ng-model="dateFilter">
+  </label>
+  <label>Tomorrow
+    <input type="radio" value="tomorrow" ng-model="dateFilter">
+  </label>
+  <label>All
+    <input type="radio" value="all" ng-model="dateFilter">
+  </label>
+    <h1>This is the sidebar</h1>
   </div>
-</div>
-  <!-- /.row -->
-  <ul>
-    <li class="row" ng-repeat="entry in events">
-      <div class="col col-xs-9">
-        <h2>{{ entry.date | date : 'EEEE d MMMM'}}</h2>
-        <ul class="list-group">
-          <li class="list-group-item" ng-repeat="event in entry.events">
-            <div class="row">
-              <div class="col col-xs-4">
-                <div class="event-list-img" style="background-image: url({{event.image}});"></div>
-              </div>
-              <div class="col col-xs-8">
-                <h3>{{event.name}} <span class="badge">{{event.studio_number}}</span></h3>
-                <p>{{event.media_type}}</p>
-              </div>
-            </div>
-          </li>
-        </ul>
-        <!--
-          <a ui-sref="app.events.detail({id:event.id})">
-              <div style="background: url({{ event.image }})" class="list-background">
-                <div class="bottom-cover">
-                  <p class="event-list-name">{{ event.name }}</p>
-                  <p class="event-list-media">{{ event.media_type }}</p>
-                </div>
-              </div>
-          </a>-->
+  <!--content-->
+  <div class="col col-xs-9  col-xs-pull-3">
+
+    <div class="row">
+      <div class="col-xs-12">
+        <ui-gmap-google-map center='map.center' zoom='map.zoom'>
+          <ui-gmap-markers models="events" coords="'marker.geopoint'"
+            idKey = "'id'" modelsbyref="true" icon="'marker.icon'">
+          </ui-gmap-markers>
+        </ui-gmap-google-map>
       </div>
-    </li>
-  </ul>
-  <!-- /ul.row -->
+    </div>
+      <!-- /.row -->
+      <ul>
+        <li class="row" ng-repeat="(key, value) in events | filter: sameDay(today) | orderBy: 'date' | groupBy: 'date'">
+          <div class="col col-xs-12">
+            <h2 class="capitalize">{{ key | prettydate : 'EEEE d MMMM'}}</h2>
+            <ul class="list-group">
+              <li class="list-group-item" ng-repeat="event in value">
+                <div class="row">
+                  <div class="col col-xs-4">
+                    <div class="event-list-img" style="background-image: url({{event.image}});"></div>
+                  </div>
+                  <div class="col col-xs-8">
+                    <h3>{{event.name}} <span class="badge">{{event.studio_number}}</span></h3>
+                    <p>{{event.media_type}}</p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <!--
+              <a ui-sref="app.events.detail({id:event.id})">
+                  <div style="background: url({{ event.image }})" class="list-background">
+                    <div class="bottom-cover">
+                      <p class="event-list-name">{{ event.name }}</p>
+                      <p class="event-list-media">{{ event.media_type }}</p>
+                    </div>
+                  </div>
+              </a>-->
+          </div>
+        </li>
+      </ul>
+  </div> <!-- col content -->
 </div>

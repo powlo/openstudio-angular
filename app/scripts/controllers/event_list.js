@@ -4,14 +4,21 @@ angular.module('openstudioAngularApp')
     .controller('EventListCtrl', [
       '$rootScope', '$scope', '$stateParams', 'Event',
       function ($rootScope, $scope, $stateParams, Event) {
-        $scope.today = new Date();
-        $scope.today.setDate(1);
-        $scope.today.setMonth(6);
-        $scope.today.setHours(12,0,0,0);
+
+        const today = new Date();
+        const tomorrow = new Date(today);
+        tomorrow.setDate(today.getDate()+1);
+
+        $scope.today = today.toString();
+        $scope.tomorrow = tomorrow.toString();
+        //event filtering criteria
+        $scope.filter = {date: null};
 
         //util function, move to own module
-        $scope.sameDay = function(d1){
+        $scope.sameDay = function(date){
           return function(event){
+            if (!date) {return true;}
+            const d1 = new Date(date);
             const d2 = new Date(event.date);
             return d2.getYear() === d1.getYear() &&
               d2.getMonth() === d1.getMonth() &&

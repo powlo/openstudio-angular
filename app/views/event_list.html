@@ -6,16 +6,24 @@
 <div class="row">
   <!--sidebar -->
   <div class="col col-xs-3 col-xs-push-9">
-  <label>Today
-    <input type="radio" value="today" ng-model="dateFilter">
-  </label>
-  <label>Tomorrow
-    <input type="radio" value="tomorrow" ng-model="dateFilter">
-  </label>
-  <label>All
-    <input type="radio" value="all" ng-model="dateFilter">
-  </label>
-    <h1>This is the sidebar</h1>
+    <div>
+      <label>
+        <input type="radio" ng-model="filter" ng-value="{date: today}">
+        Today
+      </label>
+    </div>
+    <div>
+      <label>
+        <input type="radio" ng-model="filter" ng-value="{date: tomorrow}">
+        Tomorrow
+      </label>
+    </div>
+    <div>
+      <label>
+        <input type="radio" ng-model="filter" ng-value="{date: null}">
+        All
+      </label>
+    </div>
   </div>
   <!--content-->
   <div class="col col-xs-9  col-xs-pull-3">
@@ -31,7 +39,7 @@
     </div>
       <!-- /.row -->
       <ul>
-        <li class="row" ng-repeat="(key, value) in events | filter: sameDay(today) | orderBy: 'date' | groupBy: 'date'">
+        <li class="row" ng-repeat="(key, value) in events | filter: sameDay(filter.date) | orderBy: 'date' | groupBy: 'date'">
           <div class="col col-xs-12">
             <h2 class="capitalize">{{ key | prettydate : 'EEEE d MMMM'}}</h2>
             <ul class="list-group">

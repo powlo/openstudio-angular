@@ -2,8 +2,20 @@
 
 angular.module('openstudioAngularApp')
     .controller('EventListCtrl', [
-      '$rootScope', '$scope', '$stateParams', 'Event',
-      function ($rootScope, $scope, $stateParams, Event) {
+      '$rootScope', '$scope', '$stateParams', '$filter', 'Event',
+      function ($rootScope, $scope, $stateParams, $filter, Event) {
+
+        //util function, move to own module
+        function sameDay(actual, expected){
+          if(!actual || !expected) {
+            return true;
+          }
+          else {
+            let a = new Date(actual);
+            let b = new Date(expected);
+            return a.toDateString() === b.toDateString();
+          }
+        }
 
         const today = new Date();
         const tomorrow = new Date(today);
@@ -11,20 +23,17 @@ angular.module('openstudioAngularApp')
 
         $scope.today = today.toString();
         $scope.tomorrow = tomorrow.toString();
+
         //event filtering criteria
         $scope.filter = {date: null};
 
-        //util function, move to own module
-        $scope.sameDay = function(date){
-          return function(event){
-            if (!date) {return true;}
-            const d1 = new Date(date);
-            const d2 = new Date(event.date);
-            return d2.getYear() === d1.getYear() &&
-              d2.getMonth() === d1.getMonth() &&
-              d2.getDate() === d1.getDate();
-          };
-        };
+        //every time we make a change, update the filtered events
+        $scope.filter_change = function(){
+          //figure out how to make this fire properly
+          $scope.filtered_events = $filter('filter')($scope.events, $scope.filter, sameDay)
+        }
+
+
 
         $scope.map = {
           center: {
@@ -32,7 +41,6 @@ angular.module('openstudioAngularApp')
             longitude: 0.1218 },
           zoom: 15
         };
-        $scope.markers = [];
 
         //ilike doesn't seem to work with mongodb...
         if ($stateParams.search === undefined) {
@@ -44,7 +52,6 @@ angular.module('openstudioAngularApp')
             where: {name: {regexp: ilike_pattern}}
           }},
           function (events) { /*success*/
-            $scope.events = events;
             //create a marker for each event
             events.forEach(function(event){
               let m = {geopoint: {}, icon: 'images/map-marker.png', id: event.id};
@@ -52,6 +59,7 @@ angular.module('openstudioAngularApp')
               m.geopoint.longitude = event.geopoint.lng;
               event.marker = m;
             });
+            $scope.events = events;
           },
           function (response) { /*error*/
             console.log("Error: " + response + " " + response);

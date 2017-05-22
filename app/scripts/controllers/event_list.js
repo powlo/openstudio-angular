@@ -19,21 +19,21 @@ angular.module('openstudioAngularApp')
 
         const today = new Date();
         const tomorrow = new Date(today);
+        let events = [];
+
         tomorrow.setDate(today.getDate()+1);
 
         $scope.today = today.toString();
         $scope.tomorrow = tomorrow.toString();
 
         //event filtering criteria
-        $scope.filter = {date: null};
+        $scope.filter = {date: today.toString()};
 
         //every time we make a change, update the filtered events
         $scope.filter_change = function(){
           //figure out how to make this fire properly
-          $scope.filtered_events = $filter('filter')($scope.events, $scope.filter, sameDay)
+          $scope.events = $filter('filter')(events, $scope.filter, sameDay)
         }
-
-
 
         $scope.map = {
           center: {
@@ -51,15 +51,20 @@ angular.module('openstudioAngularApp')
           filter: {
             where: {name: {regexp: ilike_pattern}}
           }},
-          function (events) { /*success*/
+          function (objs) { /*success*/
             //create a marker for each event
-            events.forEach(function(event){
+            objs.forEach(function(event){
               let m = {geopoint: {}, icon: 'images/map-marker.png', id: event.id};
               m.geopoint.latitude = event.geopoint.lat;
               m.geopoint.longitude = event.geopoint.lng;
               event.marker = m;
             });
-            $scope.events = events;
+
+            //we want to keep all the events, but not have them in $scope.
+            events = objs;
+
+            //the scoped events are always passed through the filter first.
+            $scope.events = $filter('filter')(events, $scope.filter, sameDay);
           },
           function (response) { /*error*/
             console.log("Error: " + response + " " + response);

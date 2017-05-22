@@ -29,11 +29,10 @@ angular.module('openstudioAngularApp')
         //event filtering criteria
         $scope.filter = {date: today.toString()};
 
-        //every time we make a change, update the filtered events
-        $scope.filter_change = function(){
-          //figure out how to make this fire properly
+        //every time we make a change to the filter, update the filtered events
+        $scope.$watch('filter', function() {
           $scope.events = $filter('filter')(events, $scope.filter, sameDay)
-        }
+        }, true);
 
         $scope.map = {
           center: {

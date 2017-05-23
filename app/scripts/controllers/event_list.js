@@ -20,18 +20,21 @@ angular.module('openstudioAngularApp')
         const today = new Date();
         const tomorrow = new Date(today);
         let events = [];
+        $scope.events = [];
 
         tomorrow.setDate(today.getDate()+1);
 
         $scope.today = today.toString();
         $scope.tomorrow = tomorrow.toString();
 
-        //event filtering criteria
+        //initiial event filtering criteria
         $scope.filter = {date: today.toString()};
 
         //every time we make a change to the filter, update the filtered events
         $scope.$watch('filter', function() {
-          $scope.events = $filter('filter')(events, $scope.filter, sameDay)
+          let date_filter = {};
+          date_filter.date = $scope.filter.date;
+          $scope.events = $filter('filter')(events, date_filter, sameDay);
         }, true);
 
         $scope.map = {
@@ -46,10 +49,7 @@ angular.module('openstudioAngularApp')
           $stateParams.search = '';
         }
         const ilike_pattern = "/.*" + $stateParams.search + ".*/i";
-        Event.find({
-          filter: {
-            where: {name: {regexp: ilike_pattern}}
-          }},
+        Event.find({"filter": {"where" : {"date" : {"gte": today }}}},
           function (objs) { /*success*/
             //create a marker for each event
             objs.forEach(function(event){
@@ -69,8 +69,9 @@ angular.module('openstudioAngularApp')
 
             //the scoped events are always passed through the filter first.
             $scope.events = $filter('filter')(events, $scope.filter, sameDay);
+
           },
           function (response) { /*error*/
-            console.log("Error: " + response + " " + response);
+            console.log("Error: " + JSON.stringify(response));
           });
     }]);

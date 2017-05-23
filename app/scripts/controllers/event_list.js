@@ -53,7 +53,12 @@ angular.module('openstudioAngularApp')
           function (objs) { /*success*/
             //create a marker for each event
             objs.forEach(function(event){
-              let m = {geopoint: {}, icon: 'images/map-marker.png', id: event.id};
+              let icon = {
+                url: 'images/map-marker-point.svg',
+                size: new google.maps.Size(50, 50),
+                scaledSize: new google.maps.Size(50, 50)
+              };
+              let m = {geopoint: {}, icon: icon, id: event.id};
               m.geopoint.latitude = event.geopoint.lat;
               m.geopoint.longitude = event.geopoint.lng;
               event.marker = m;

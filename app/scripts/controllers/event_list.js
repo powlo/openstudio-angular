@@ -4,26 +4,12 @@ angular.module('openstudioAngularApp')
     .controller('EventListCtrl', [
       '$rootScope', '$scope', '$stateParams', '$filter', 'Event',
       function ($rootScope, $scope, $stateParams, $filter, Event) {
-
-        //util function, move to own module
-        function sameDay(actual, expected){
-          if(!actual || !expected) {
-            return true;
-          }
-          else {
-            let a = new Date(actual);
-            let b = new Date(expected);
-            return a.toDateString() === b.toDateString();
-          }
-        }
-
-        const today = new Date();
-        const tomorrow = new Date(today);
         let events = [];
         $scope.events = [];
 
+        const today = new Date();
+        const tomorrow = new Date(today);
         tomorrow.setDate(today.getDate()+1);
-
         $scope.today = today.toString();
         $scope.tomorrow = tomorrow.toString();
 
@@ -34,7 +20,18 @@ angular.module('openstudioAngularApp')
         $scope.$watch('filter', function() {
           let date_filter = {};
           date_filter.date = $scope.filter.date;
-          $scope.events = $filter('filter')(events, date_filter, sameDay);
+          let date_filtered_events = $filter('filter')(events, date_filter,
+            function (actual, expected){
+              if(!actual || !expected) {
+                return true;
+              }
+              else {
+                let a = new Date(actual);
+                let b = new Date(expected);
+                return a.toDateString() === b.toDateString();
+              }
+            });
+          $scope.events = $filter('filter')(date_filtered_events, $scope.filter.text);
         }, true);
 
         $scope.map = {
@@ -44,11 +41,6 @@ angular.module('openstudioAngularApp')
           zoom: 15
         };
 
-        //ilike doesn't seem to work with mongodb...
-        if ($stateParams.search === undefined) {
-          $stateParams.search = '';
-        }
-        const ilike_pattern = "/.*" + $stateParams.search + ".*/i";
         Event.find({"filter": {"where" : {"date" : {"gte": today }}}},
           function (objs) { /*success*/
             //create a marker for each event

@@ -5,10 +5,7 @@ angular.module('openstudioAngularApp')
 
     $scope.loggedIn = false;
     $scope.username = '';
-    $scope.search_text = '';
-    $scope.search = function(){
-      $state.go('app.events', {search: $scope.search_text});
-    }
+
     if(AuthFactory.isAuthenticated()) {
         $scope.loggedIn = true;
         $scope.username = AuthFactory.getUsername();

@@ -10,14 +10,15 @@
       ng-click="filter.date = today">
       Today
     </button>
-      <button type="button" class="btn btn-default btn-block"
-        ng-click="filter.date = tomorrow">
-        Tomorrow
-      </button>
-      <button type="button" class="btn btn-default btn-block"
-        ng-click="filter.date = ''">
-        All
-      </button>
+    <button type="button" class="btn btn-default btn-block"
+      ng-click="filter.date = tomorrow">
+      Tomorrow
+    </button>
+    <button type="button" class="btn btn-default btn-block"
+      ng-click="filter.date = ''">
+      All
+    </button>
+    <input type="text" class="form-control" ng-model="filter.text" ng-model-options="{ debounce: 1000 }">
   </div>
   <!--content-->
   <div class="col col-xs-9  col-xs-pull-3">

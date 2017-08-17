@@ -28,7 +28,8 @@ angular
         LoopBackResourceProvider.setUrlBase('http://localhost:8080/api');
 
         uiGmapGoogleMapApiProvider.configure({
-        key: 'AIzaSyBK8FryBmEpUNMPy31IcoF9iErtDI7JG3Q'
+        key: 'AIzaSyBK8FryBmEpUNMPy31IcoF9iErtDI7JG3Q',
+        libraries: 'drawing'
         });
 
         $stateProvider

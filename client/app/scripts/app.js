@@ -35,8 +35,8 @@ angular
         $stateProvider
             .state('app', {
               url: '',
-              templateUrl : 'views/header.html',
-              controller  : 'HeaderCtrl'
+              templateUrl : 'views/base.html',
+              controller  : 'BaseCtrl'
             })
             .state('app.map', {
               url: '/map/',

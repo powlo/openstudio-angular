@@ -35,39 +35,23 @@ angular
         $stateProvider
             .state('app', {
               url: '',
-              views: {
-                'header': {
-                    templateUrl : 'views/header.html',
-                    controller  : 'HeaderCtrl'
-                }
-              }
+              templateUrl : 'views/header.html',
+              controller  : 'HeaderCtrl'
             })
             .state('app.map', {
-                url: '/map/',
-                views: {
-                  'content@': {
-                    templateUrl: 'views/map.html',
-                    controller: 'MapCtrl'
-                  }
-                }
+              url: '/map/',
+              templateUrl: 'views/map.html',
+              controller: 'MapCtrl'
             })
             .state('app.events', {
-                url: '/events/?search',
-                views: {
-                  'content@': {
-                    templateUrl: 'views/event_list.html',
-                    controller: 'EventListCtrl'
-                  }
-                }
+              url: '/events/?search',
+              templateUrl: 'views/event_list.html',
+              controller: 'EventListCtrl'
             })
             .state('app.events.detail', {
-                url: ':id',
-                views: {
-                  'content@': {
-                    templateUrl: 'views/event_detail.html',
-                    controller: 'EventDetailCtrl'
-                  }
-                }
+              url: ':id',
+              templateUrl: 'views/event_detail.html',
+              controller: 'EventDetailCtrl'
             });
         $urlRouterProvider.otherwise('/events/');
     });

@@ -42,6 +42,15 @@ angular
                 }
               }
             })
+            .state('app.map', {
+                url: '/map/',
+                views: {
+                  'content@': {
+                    templateUrl: 'views/map.html',
+                    controller: 'MapCtrl'
+                  }
+                }
+            })
             .state('app.events', {
                 url: '/events/?search',
                 views: {
